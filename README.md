@@ -1,7 +1,8 @@
 # Centrects-Public-Code
 Welcome to my GitHub repository!
 
-Here I will post all my code that I decide to make public. It contains code from some of my many Minecraft servers. 
+Here I will post all my code that I decide to make public. It contains code from some of my many Minecraft servers.
+Please read over the terms and conditions listed below before making any downloads or utilizing any of the products on this page.  
 
 
 # Terms And Conditions:
