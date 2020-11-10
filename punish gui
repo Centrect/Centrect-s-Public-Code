@@ -1,3 +1,5 @@
+#Punishment GUI
+
 command /punish <offlineplayer>:
   permission: staff
   permission message: &8You must have &3&lSTAFF!
