@@ -1,0 +1,36 @@
+options:
+        P : &6&lPEARLS &7  
+        IS : &e/pearl <enable/disable/toggle>
+command /pearl [<text>]:
+        permission: skript.grapple
+        trigger:
+                if arg 1 is "enable":
+                        set {grapple} to true
+                        broadcast "{@P} &ePearl Flight Enabled!"
+                if arg 1 is "disable":
+                        set {grapple} to false
+                        broadcast "{@P} &ePearl Flight Disabled!"
+                if arg 1 is "toggle":
+                        if {grapple} is true:
+                                set {grapple} to false
+                                broadcast "{@P} &ePearl Flight Disabled!"
+                                stop
+                        if {grapple} is false:
+                                set {grapple} to true
+                                broadcast "{@P} &ePearl Flight Enabled!"
+                                stop
+on damage:    
+        {grapple} is true
+        damage cause is fall
+        cancel the event
+on shoot:
+  shooter is player
+  projectile is enderpearl 
+  if {grapple} is true:
+    set {_waited} to difference between {G.%shooter%.lastused} and now
+    if {_waited} is less than 10 seconds:
+      cancel event
+      send "&eCooling Down" to shooter
+      stop
+    make the shooter ride the projectile
+    set {G.%shooter%.lastused} to now
