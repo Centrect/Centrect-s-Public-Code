@@ -6,18 +6,18 @@ command /pearl [<text>]:
         trigger:
                 if arg 1 is "enable":
                         set {grapple} to true
-                        broadcast "{@P} &ePearl Flight Enabled!"
+                        send "{@P} &ePearl Flight Enabled!"
                 if arg 1 is "disable":
                         set {grapple} to false
-                        broadcast "{@P} &ePearl Flight Disabled!"
+                        send "{@P} &ePearl Flight Disabled!"
                 if arg 1 is "toggle":
                         if {grapple} is true:
                                 set {grapple} to false
-                                broadcast "{@P} &ePearl Flight Disabled!"
+                                send "{@P} &ePearl Flight Disabled!"
                                 stop
                         if {grapple} is false:
                                 set {grapple} to true
-                                broadcast "{@P} &ePearl Flight Enabled!"
+                                send "{@P} &ePearl Flight Enabled!"
                                 stop
 on damage:    
         {grapple} is true
