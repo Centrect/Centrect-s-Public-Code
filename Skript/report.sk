@@ -1,0 +1,266 @@
+options:
+  reportChannel: #(Put the Channel ID of your channel you will use for logging reports.)
+  token: #(Put your bot token here)
+  bot: #(Put the name of your bot here.)
+  permission: #(Replace with your main staff permission)
+  bypasserror: #(Replace with the error message you want when staff bypass reports.)
+  image: #(Put a server logo image here)
+
+
+
+
+
+
+#============================================================#
+#              DO NOT TOUCH FROM HERE!                       #
+#          UNLESS YOU KNOW WHAT YOU ARE DOING                #
+#============================================================#
+
+
+on skript load:
+    login to "{@token}" with the name "{@bot}"
+
+command /report <offline player>:
+  trigger:
+    if arg-1 has permission "{@permission}":
+      send "{@bypasserror}"
+    else:
+      set {_p} to arg-1
+      open virtual chest inventory with size 6 named "&7Report &d%{_p}%" to player
+      set {_i} to 0
+      loop 54 times:
+        format gui slot {_i} of player with black stained glass pane named ""
+        add 1 to {_i}
+      format gui slot 13 of player with skull of {_p}  named "&7Reporting %{_p}%"
+
+      format gui slot 29 of player with red concrete named "&c&lGameplay Report" with lore "&cInitiate a gameplay report" to run:
+        make player execute "reportgameplay %{_p}%"
+    
+      format gui slot 39 of player with orange concrete named "&e&lChat Report" with lore "&eInitiate a gameplay report" to run:
+        make player execute "reportchat %{_p}%"
+
+      format gui slot 33 of player with yellow concrete named "&6&lCheat Report" with lore "&6Initiate a gameplay report" to run:
+        make player execute "reportcheat %{_p}%"
+    
+      format gui slot 41 of player with lime concrete named "&a&lOther Report" with lore "&aInitiate a gameplay report" to run:
+        close player's inventory
+        make player execute "reportother %{_p}%"
+    
+      format gui slot 53 of player with barrier named "&c&lCLOSE" to close
+
+      
+command /reportgameplay <offlineplayer>:
+  trigger:
+    set {_p} to arg
+    open virtual chest inventory with size 6 named "&7Gameplay Reports" to player
+    set {_i} to 0
+    loop 54 times:
+      format gui slot {_i} of player with black stained glass pane named ""
+      add 1 to {_i}
+    format gui slot 13 of player with skull of {_p} named "&7Report %{_p}%"
+    
+    format gui slot 22 of player with oak sign named "&7Go Back" to run:
+      make player execute "Report %{_p}%"
+    
+    format gui slot 29 of player with red concrete named "&7Abusing Bugs" with lore "&7Report %{_p}% for Abusing Glitches" to run:
+      make player execute "finalizereport gameplay abusingbugs %{_p}%"
+    
+    format gui slot 30 of player with red concrete named "&7Innapropriate Skin" with lore "&7Report %{_p}% for Innapropriate Skin" to run:
+      make player execute "finalizereport gameplay innapskin %{_p}%"
+    
+    format gui slot 31 of player with red concrete named "&7Innapropriate Name" with lore "&7Report %{_p}% for Innapropriate Name" to run:
+      make player execute "finalizereport gameplay innapname %{_p}%"
+    
+    format gui slot 32 of player with red concrete named "&7Spoiling Game" with lore "&7Report %{_p}% for Spoiling Game" to run:
+      make player execute "finalizereport gameplay spoilinggame %{_p}%"
+      
+    format gui slot 33 of player with red concrete named "&7Abusing Glitches" with lore "&7Report %{_p}% for Abusing Glitches" to run:
+      make player execute "finalizereport gameplay abusingglitch %{_p}%"
+      
+    format gui slot 38 of player with red concrete named "&7Ban Evading" with lore "&7Report %{_p}% for Ban Evasion" to run:
+      make player execute "finalizereport gameplay banevading %{_p}%"
+      
+    format gui slot 39 of player with red stained glass pane named "&7" to close
+      
+    format gui slot 40 of player with red stained glass pane named "&7" to close
+    
+    format gui slot 41 of player with red stained glass pane named "&7" to close 
+      
+    format gui slot 42 of player with red stained glass pane named "&7" to close
+      
+    format gui slot 53 of player with barrier named "&c&lCLOSE" to close
+    
+    
+command /reportcheat <offlineplayer>:
+  trigger:
+    set {_p} to arg
+    open virtual chest inventory with size 6 named "&7Cheating Reports" to player
+    set {_i} to 0
+    loop 54 times:
+      format gui slot {_i} of player with black stained glass pane named ""
+      add 1 to {_i}
+    format gui slot 13 of player with skull of {_p} named "&7Report %{_p}%"
+    
+    format gui slot 22 of player with oak sign named "&7Go Back" to run:
+      make player execute "report %{_p}%"
+    
+    format gui slot 29 of player with yellow concrete named "&7Kill Aura" with lore "&7Report %{_p}% for Kill Aura" to run:
+      make player execute "finalizereport cheat ka %{_p}%"
+    
+    format gui slot 30 of player with yellow concrete named "&7Flight" with lore "&7Report %{_p}% for Flight" to run:
+      make player execute "finalizereport cheat flight %{_p}%"
+    
+    format gui slot 31 of player with yellow concrete named "&7Step / Spider" with lore "&7Report %{_p}% for Step / Spider" to run:
+      make player execute "finalizereport cheat step %{_p}%"
+    
+    format gui slot 32 of player with yellow concrete named "&7Speed / Bhop" with lore "&7Report %{_p}% for Speed / Bhop" to run:
+      make player execute "finalizereport cheat speed %{_p}%"
+      
+    format gui slot 33 of player with yellow concrete named "&7Anti Knockback / Velocity" with lore "&7Report %{_p}% for AntiKB / Velocity" to run:
+      make player execute "finalizereport cheat antikb %{_p}%"
+      
+    format gui slot 38 of player with yellow concrete named "&7Use of a cheat client" with lore "&7Report %{_p}% for Use of a cheat client" to run:
+      make player execute "finalizereport cheat client %{_p}%"
+      
+    format gui slot 39 of player with yellow concrete named "&7Autoclicker" with lore "&7Report %{_p}% for Autoclicker" to run:
+      make player execute "finalizereport cheat autoclicker %{_p}%"
+      
+    format gui slot 40 of player with yellow concrete named "&7Player ESP" with lore "&7Report %{_p}% for Player ESP" to run:
+      make player execute "finalizereport cheat esp %{_p}%"
+    
+    format gui slot 41 of player with yellow concrete named "&7Chat related cheats (Autospammer etc)" with lore "&7Report %{_p}% for Chat related cheats" to run:
+      make player execute "finalizereport cheat chatcheat %{_p}%"
+      
+    format gui slot 42 of player with red stained glass pane named "&7"
+      
+    format gui slot 53 of player with barrier named "&c&lCLOSE" to close
+
+command /reportchat <offlineplayer>:
+  trigger:
+    set {_p} to arg
+    open virtual chest inventory with size 6 named "&7Chat Reports" to player
+    set {_i} to 0
+    loop 54 times:
+      format gui slot {_i} of player with black stained glass pane named ""
+      add 1 to {_i}
+    format gui slot 13 of player with skull of {_p} named "&7Report %{_p}%"
+    
+    format gui slot 22 of player with sign named "&7Go Back" to run:
+      make player execute "report %{_p}%"
+    
+    format gui slot 38 of player with orange concrete named "&7Spam" with lore "&7Report %{_p}% for Spam" to run:
+      make player execute "finalizereport chat spam %{_p}%"
+    
+    format gui slot 39 of player with orange concrete named "&7Use of capitals" with lore "&7Report %{_p}% for Spam" to run:
+      make player execute "finalizereport chat caps %{_p}%"
+    
+    format gui slot 40 of player with orange concrete named "&7Swearing / Profanity" with lore "&7Report %{_p}% for Spam" to run:
+      make player execute "finalizereport chat swearing %{_p}%"
+    
+    format gui slot 41 of player with orange concrete named "&7Advertisement" with lore "&7Report %{_p}% for Spam" to run:
+      make player execute "finalizereport chat advertisement %{_p}%"
+      
+    format gui slot 42 of player with orange concrete named "&7Toxicity" with lore "&7Report %{_p}% for Spam" to run:
+      make player execute "finalizereport chat toxicity %{_p}%"
+      
+    format gui slot 53 of player with barrier named "&c&lCLOSE" to close
+
+command /reportother <offlineplayer>:
+  trigger:
+    set {reportingreason::%player%} to true
+    set {reported::%player%} to arg-1
+    send "&cPlease say what you are reporting %arg-1%&c for in chat now."
+
+command /finalizereport <text> <text> <offline player>:
+  trigger:
+    if arg-1 is "gameplay":
+      set {_root} to "Gameplay Report"
+      if arg-2 is "abusingbugs":
+        set {_reason} to "Abuse of Bugs"
+      else if arg-2 is "innapskin":
+        set {_reason} to "Innapropriate Skin"
+      else if arg-2 is "innapname":
+        set {_reason} to "Innapropriate Name"
+      else if arg-2 is "spoilinggame":
+        set {_reason} to "Spoiling the Game"
+      else if arg-2 is "abusingglitch":
+        set {_reason} to "Abuse of Glitches"
+      else if arg-2 is "banevading":
+        set {_reason} to "Ban Evading"
+    if arg-1 is "cheat":
+      set {_root} to "Cheating Report"
+      if arg-2 is "ka":
+        set {_reason} to "Kill Aura"
+      else if arg-2 is "Flight":
+        set {_reason} to "Flight"
+      else if arg-2 is "step":
+        set {_reason} to "Step / Spider"
+      else if arg-2 is "speed":
+        set {_reason} to "Speed / Bhop"
+      else if arg-2 is "antikb":
+        set {_reason} to "Anti Knockback / Velocity"
+      else if arg-2 is "client":
+        set {_reason} to "Use of a hacked client"
+      else if arg-2 is "autoclicker":
+        set {_reason} to "Autoclicker"
+      else if arg-2 is "esp":
+        set {_reason} to "Player ESP / Tracers"
+      else if arg-2 is "chatcheat":
+        set {_reason} to "Chat Related Cheats"
+      else if arg-2 is "innapskin":
+        set {_reason} to "Innapropriate Skin"
+    if arg-1 is "chat":
+      set {_root} to "Chat Report"
+      if arg-2 is "spam":
+        set {_reason} to "spam"
+      else if arg-2 is "caps":
+        set {_reason} to "Excessive Capitals"
+      else if arg-2 is "Swearing":
+        set {_reason} to "Swearing"
+      else if arg-2 is "advertisement":
+        set {_reason} to "External / Indirect Advertisement"
+      else if arg-2 is "toxicity":
+        set {_reason} to "Toxicity"
+    wait 1 tick
+    send "" to all players where [input has permission "{@permission}"]
+    send "  &b%player% &7has filed a report:" to all players where [input has permission "{@permission}"]
+    send "  &bReported: &7%arg-3%" to all players where [input has permission "{@permission}"]
+    send "  &bCategory: &7%{_root}%" to all players where [input has permission "{@permission}"]
+    send "  &bReason: &7%{_reason}%" to all players where [input has permission "{@permission}"]
+    send ""
+    create embed:
+      set the title of embed to title with text "Report - OTHER"
+      set the colour of the embed to Cyan
+      add split field named "Reported:" with value "%arg-3%" to embed
+      add split field named "Reporter:" with value "%player%" to embed
+      add split field named "Reason:" with value "%{_root}% - %{_reason}%" to embed
+      set the footer of embed to footer with text "{@bot}" and icon "{@image}"
+      set the timestamp of embed to now
+    send the last created embed to channel with id "{@reportChannel}" with "{@bot}"
+
+
+on chat:
+  if {reportingreason::%player%} is true:
+    set {_reason} to message
+    set {reportingreason::%player%} to false
+    send "&7Reported &d%{reported::%player%}%&7. A staff member will respond shortly."
+    wait 1 tick
+    send "" to all players where [input has permission "{@permission}"]
+    send "  &b%player% &7has filed a report:" to all players where [input has permission "{@permission}"]
+    send "  &bReported: &7%{reported::%player%}%" to all players where [input has permission "{@permission}"]
+    send "  &bCategory: &7Other" to all players where [input has permission "{@permission}"]
+    send "  &bReason: &7%{_reason}%" to all players where [input has permission "{@permission}"]
+    send ""
+    create embed:
+      set the title of embed to title with text "Report - OTHER"
+      set the colour of the embed to Cyan
+      add split field named "Reported:" with value "%{reported::%player%}%" to embed
+      add split field named "Reporter:" with value "%player%" to embed
+      add split field named "Reason:" with value "%{_reason}%" to embed
+      set the footer of embed to footer with text "{@bot}" and icon "{@image}"
+      set the timestamp of embed to now
+      send the last created embed to channel with id "{@reportChannel}" with "{@bot}"
+    set {reportingreason::%player%} to false
+    clear {reported::%player%}
+		
+    
